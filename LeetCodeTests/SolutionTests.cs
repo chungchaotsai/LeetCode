@@ -19,6 +19,18 @@ namespace LeetCodeTests
         {
             Assert.That(s.TwoSum(intArray, target), Is.EqualTo(result));
         }
+
+        [Test]
+        [TestCase(121, true)]
+        [TestCase(-121, false)]
+        [TestCase(0, true)]
+        [TestCase(123, false)]
+        public void PalindromeNumber(int x, bool result )
+        {
+            Assert.That(s.PalindromeNumber(x), Is.EqualTo(result));
+        }
+
+
     }
 
     

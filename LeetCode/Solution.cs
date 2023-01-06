@@ -25,6 +25,20 @@ namespace LeetCode
             }
             return result;
         }
+        public bool PalindromeNumber(int num)
+        {
+            if (num < 0) return false;
+            var ch = num.ToString().ToCharArray();
+            char[] reversech = new char[ch.Length];
 
+            int i = 0;
+            foreach (var c in ch)
+            {
+                reversech[ch.Length - 1 - i] = c;
+                i++;
+            }
+
+            return ch.SequenceEqual(reversech);
+        }
     }
 }
