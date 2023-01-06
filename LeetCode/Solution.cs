@@ -145,7 +145,11 @@ namespace LeetCode
                 return prefix;
             }
         }
-
+        /// <summary>
+        /// R *, M *
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public bool ValidParenthesesd(string s)
         {
             var result = true;
@@ -177,6 +181,12 @@ namespace LeetCode
             if (ParenthesesAry.Count() > 0) result = false;
             return result;
         }
+        /// <summary>
+        /// R **, M *
+        /// </summary>
+        /// <param name="l1"></param>
+        /// <param name="l2"></param>
+        /// <returns></returns>
         public ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
             ListNode result = new ListNode(0);
