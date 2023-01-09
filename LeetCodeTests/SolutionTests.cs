@@ -82,8 +82,54 @@ namespace LeetCodeTests
             Assert.That(result2.next,Is.Null);
 
         }
-    }
 
+        [Test]
+        [TestCase(new int[] { 1, 3, 5, 6 }, 5, 2)]
+        [TestCase(new int[] { 1, 3, 5, 6 }, 2, 1)]
+        [TestCase(new int[] { 1, 3, 5, 6 }, 7, 4)]
+        public void SearchInsert(int[] nums, int target, int result)
+        {
+            Assert.That(sol.SearchInsert(nums,target), Is.EqualTo(result));
+        }
+
+        [Test]
+        [TestCase("Hello World",5)]
+        [TestCase("   fly me   to   the moon  ", 4)]
+        [TestCase("luffy is still joyboy", 6)]
+        public void LengthOfLastWord(string s, int result)
+        {
+            Assert.That(sol.LengthOfLastWord(s), Is.EqualTo(result));
+        }
+
+        [Test]
+        [TestCase(new int[] { 1, 2, 3}, new int[] { 1, 2, 4 })]
+        [TestCase(new int[] { 4, 3, 2, 1 }, new int[] { 4, 3, 2, 2 })]
+        [TestCase(new int[] { 9 }, new int[] { 1, 0 })]
+        public void PlusOne(int[] nums, int[] result)
+        {
+            Assert.That(sol.PlusOne(nums), Is.EqualTo(result));
+        }
+
+        [Test]
+        [TestCase("1010", "1011", "10101")]
+        [TestCase("11", "1", "100")]
+        public void AddBinary(string a, string b, string result)
+        {
+            Assert.That(sol.AddBinary(a,b), Is.EqualTo(result));
+
+        }
+
+        [Test]
+        [TestCase(2,2)]
+        [TestCase(3, 3)]
+        [TestCase(4,5)]
+        public void ClimbStairs(int n, int result)
+        {
+            Assert.That(sol.ClimbStairs(n), Is.EqualTo(result));
+
+        }
+    }
+        
 
 }
 

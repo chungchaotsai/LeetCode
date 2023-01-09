@@ -15,6 +15,16 @@ namespace LeetCode
     /// </summary>
     public class Solution
     {
+        private int Factorial(int n)
+        {
+            if (n == 0) return 1;
+            var result = 1;
+            for (int i = 1; i <= n; i++)
+            {
+                result = result * i;
+            }
+            return result;
+        }
         public Solution() { }
         public int[] TwoSum(int[] nums, int target)
         {
@@ -215,6 +225,160 @@ namespace LeetCode
             }
             current.next = l1 ?? l2;
             return result.next;
+        }
+        /// <summary>
+        /// R: ** , M *
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public int SearchInsert(int[] nums, int target)
+        {
+            if (target == nums[nums.Length - 1]) return nums.Length - 1;
+            if (target > nums[nums.Length - 1]) return nums.Length;
+            if (target <= nums[0]) return 0;
+            var start = 0;
+            var end = nums.Length - 1;
+            while (start <= end)
+            {
+                int mid = (start + end) / 2;
+                if (nums[mid] == target) return mid;
+                if (nums[mid] < target)
+                {
+                    if (nums[mid + 1] >= target) return mid + 1;
+                    start = mid;
+                }
+
+                if (nums[mid] > target)
+                {
+                    if (nums[mid - 1] < target) return mid;
+                    if (nums[mid - 1] == target) return mid - 1;
+                    end = mid;
+                }
+            }
+
+            return 0;
+        }
+        /// <summary>
+        /// R * , M *
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public int LengthOfLastWord(string s)
+        {
+            s = s.Trim();
+            if (s.Length == 0) return 0;
+            string[] words = s.Split(' ');
+
+            return words[words.Length - 1].Length;
+        }
+        /// <summary>
+        /// R: ***, M * 
+        /// </summary>
+        /// <param name="digits"></param>
+        /// <returns></returns>
+        public int[] PlusOne(int[] digits)
+        {
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                int digit = digits[i];
+
+                // If num is less than 9 simply increment
+                if (digit < 9)
+                {
+                    digits[i] = digit + 1;
+                    return digits;
+                }
+                else
+                {
+                    // Set current num to 0 and there will be a carry.
+                    digits[i] = 0;
+                }
+            }
+
+            // Edge case when all values are 9's
+            int[] newDigitArray = new int[digits.Length + 1];
+            newDigitArray[0] = 1;
+
+            return newDigitArray;
+        }
+        /// <summary>
+        /// R: ** , M: *
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public string AddBinary(string a, string b)
+        {
+            var charA = a.ToCharArray();
+            var charB = b.ToCharArray();
+            Array.Reverse(charA);
+            Array.Reverse(charB);
+
+            var longArray = (charA.Length >= charB.Length) ? charA : charB;
+            var shrtArray = (charA.Length < charB.Length) ? charA : charB;
+            var ret = new List<int>();
+            var up = false;
+
+            for (int i = 0; i < longArray.Length; i++)
+            {
+
+                int l = Int32.Parse(longArray[i].ToString());
+                if (i < shrtArray.Length)
+                {
+                    int s = Int32.Parse(shrtArray[i].ToString());
+
+                    if (up) ret.Add((l + s + 1) % 2);
+                    else
+                    {
+                        ret.Add((l + s) % 2);
+                    }
+
+                    if (l + s + Convert.ToInt32(up) >= 2)
+                    {
+                        up = true;
+                    }
+                    else
+                    {
+                        up = false;
+                    }
+                }
+                else
+                {
+                    if (up)
+                    {
+                        ret.Add((1 + l) % 2);
+                        if (1 + Int32.Parse(longArray[i].ToString()) == 2)
+                        {
+                            up = true;
+                        }
+                        else
+                        {
+                            up = false;
+                        }
+                    }
+                    else
+                    {
+                        ret.Add(l);
+                    }
+                }
+            }
+
+            if (up) ret.Add(1);
+            ret.Reverse();
+            var c = string.Join("", ret.ToArray());
+            return c;
+        }
+ // TODO
+        public int MySqrt() { return 0; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int ClimbStairs(int n)
+        {
+            return Math.Fabonacci(n);
         }
     }
 }
